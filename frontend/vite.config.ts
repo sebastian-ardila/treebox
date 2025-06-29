@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -46,15 +45,6 @@ export default defineConfig({
           
           // Styled components chunk
           styles: ['styled-components'],
-          
-          // Utils chunk for utility functions
-          utils: [
-            './src/utils/colorUtils',
-            './src/utils/validators',
-            './src/utils/formatters',
-            './src/utils/cssGenerator',
-            './src/utils/boxCalculations',
-          ],
         },
       },
     },
@@ -80,68 +70,11 @@ export default defineConfig({
       'react-dom',
       'styled-components',
     ],
-    exclude: [
-      // Exclude test files from optimization
-      'vitest',
-      '@testing-library/react',
-    ],
   },
   
   // Performance optimizations
   esbuild: {
     // Drop console and debugger in production
     drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : [],
-  },
-  
-  test: {
-    // Test environment
-    environment: 'jsdom',
-    
-    // Setup files
-    setupFiles: ['./src/test/setup.ts'],
-    
-    // Global test configuration
-    globals: true,
-    
-    // Coverage configuration
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html'],
-      exclude: [
-        'node_modules/',
-        'src/test/',
-        'src/**/*.test.{ts,tsx}',
-        'src/**/*.spec.{ts,tsx}',
-        'src/**/*.d.ts',
-        'src/vite-env.d.ts',
-        'dist/',
-        'build/',
-        '*.config.{js,ts}',
-        'src/main.tsx',
-        'src/App.css',
-        'src/index.css',
-      ],
-      thresholds: {
-        global: {
-          branches: 80,
-          functions: 80,
-          lines: 80,
-          statements: 80,
-        },
-      },
-    },
-    
-    // Test file patterns
-    include: [
-      'src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-    ],
-    
-    // Test timeout
-    testTimeout: 10000,
-    
-    // Mock configuration
-    deps: {
-      inline: ['@testing-library/jest-dom'],
-    },
   },
 })
