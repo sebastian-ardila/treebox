@@ -5,7 +5,7 @@ TreeBox is a comprehensive application for HTML/CSS configuration and external a
 ## Project Structure
 
 ```
-treebox-project/
+treebox/
 ├── frontend/           # React TypeScript frontend application
 ├── backend/            # Future backend application (Node.js/Express, Python, etc.)
 ├── docs/               # Shared documentation
