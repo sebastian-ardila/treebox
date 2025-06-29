@@ -1,0 +1,45 @@
+{
+  "name": "treebox",
+  "version": "1.0.0",
+  "description": "TreeBox - HTML/CSS configuration and application integrations platform",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=frontend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "echo 'Backend not yet implemented'",
+    "build": "npm run build --workspace=frontend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build:backend": "echo 'Backend not yet implemented'",
+    "lint": "npm run lint --workspace=frontend",
+    "lint:fix": "npm run lint:fix --workspace=frontend",
+    "test": "npm run test --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present && rm -rf node_modules",
+    "install:all": "npm install && npm install --workspaces",
+    "preview": "npm run preview --workspace=frontend"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebastian-ardila/treebox.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "visual-builder",
+    "react",
+    "typescript",
+    "styled-components",
+    "integrations"
+  ],
+  "author": "TreeBox Team",
+  "license": "MIT"
+}

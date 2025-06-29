@@ -1,0 +1,4 @@
+# Backend Directory
+
+This file ensures the backend directory is tracked by Git even when empty.
+Remove this file when backend implementation begins.

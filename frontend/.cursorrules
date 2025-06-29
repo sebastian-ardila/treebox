@@ -1,0 +1,239 @@
+# TreeBox Development Rules
+
+## Project Overview
+TreeBox is a React TypeScript application for HTML/CSS configuration and application integrations. It follows a modular architecture with separation of concerns between data, business logic, and presentation layers.
+
+## Core Principles
+
+### 1. Separation of Concerns
+- **Components**: Only handle UI presentation and user interactions
+- **Hooks**: Contain all business logic and state management
+- **Data**: Static data and type definitions
+- **Styles**: All styling through styled-components with theme variables
+
+### 2. Modular Architecture
+- Follow the established folder structure in src/
+- Each component must have its own folder with index.ts, Component.tsx, and Component.styles.ts
+- Use custom hooks for all data operations and business logic
+- Keep components focused on rendering and event handling
+
+### 3. TypeScript First
+- Use strict TypeScript configuration
+- Define proper interfaces for all props and return types
+- Use type-only imports when importing types
+- Avoid `any` type - use proper typing or `unknown`
+
+## File Structure Rules
+
+### Component Structure
+```
+ComponentName/
+├── index.ts                 # Export barrel (required)
+├── ComponentName.tsx        # Component logic (required)
+├── ComponentName.styles.ts  # Styled components (required)
+├── ComponentName.types.ts   # Complex types (optional)
+└── ComponentName.test.tsx   # Tests (when added)
+```
+
+### Naming Conventions
+- **Components**: PascalCase (e.g., `SideMenu`, `MainLayout`)
+- **Hooks**: camelCase starting with "use" (e.g., `useNavigation`, `useApplications`)
+- **Files**: Match component/hook name exactly
+- **Styled Components**: PascalCase (e.g., `Container`, `Title`, `Button`)
+- **Props Interfaces**: `ComponentNameProps` format
+
+## Code Standards
+
+### React/TypeScript
+- Use functional components with hooks exclusively
+- Define props interfaces for all components
+- Use React.FC<PropsInterface> for component typing
+- Export components as named exports, not default
+- Use proper dependency arrays in useEffect and useCallback
+
+### Styled Components
+- Use styled-components for ALL styling
+- Access theme through props: `${({ theme }) => theme.colors.primary}`
+- Use transient props ($propName) for styled component props
+- No hardcoded values - always use theme variables
+- Group related styled components in the same file
+
+### Custom Hooks
+- Start with "use" prefix
+- Return objects with descriptive property names
+- Use proper TypeScript types for parameters and returns
+- Keep hooks focused on single responsibility
+- Use useCallback and useMemo for performance optimization
+
+### Imports
+- Group imports: React, external libraries, internal modules
+- Use type-only imports for TypeScript types
+- Use barrel exports (index.ts) for cleaner imports
+- Prefer named imports over default imports
+
+## Theme and Styling Rules
+
+### Theme Usage
+- Never use hardcoded colors, spacing, or other design tokens
+- Always use theme variables: `theme.colors.primary`, `theme.spacing.md`
+- Use responsive patterns with media queries
+- Follow the established theme structure
+
+### Styled Components Best Practices
+- Use semantic names for styled components
+- Add hover, focus, and active states appropriately
+- Use CSS-in-JS for conditional styling
+- Implement proper accessibility attributes
+
+## Data Management Rules
+
+### Static Data
+- Place all static data in src/data/ directory
+- Export data with proper TypeScript interfaces
+- Use enums for constants and categories
+- Provide helper functions for data manipulation
+
+### Business Logic
+- All business logic goes in custom hooks
+- Hooks should be reusable across components
+- Use proper state management patterns
+- Implement error handling in hooks
+
+### API Integration
+- Future API calls should go through services in src/services/
+- Use proper error handling and loading states
+- Implement proper TypeScript interfaces for API responses
+
+## Performance Rules
+
+### React Performance
+- Use React.memo for expensive components
+- Implement proper dependency arrays in hooks
+- Use useCallback for event handlers passed to children
+- Use useMemo for expensive calculations
+
+### Bundle Optimization
+- Lazy load components when appropriate
+- Use proper import statements to avoid bloat
+- Follow the established Vite configuration
+
+## Accessibility Rules
+
+### ARIA and Semantic HTML
+- Use semantic HTML elements
+- Add proper ARIA attributes
+- Implement keyboard navigation
+- Ensure proper focus management
+- Use proper color contrast (follow theme)
+
+### User Experience
+- Provide loading states
+- Implement error boundaries
+- Use proper form validation
+- Ensure responsive design
+
+## Testing Rules (Future)
+
+### Component Testing
+- Test component behavior, not implementation
+- Use React Testing Library patterns
+- Test accessibility features
+- Mock external dependencies
+
+### Hook Testing
+- Test custom hooks with React Hooks Testing Library
+- Test error scenarios
+- Verify proper state management
+
+## Code Quality Rules
+
+### ESLint and Prettier
+- Run `npm run lint` before committing
+- Fix all ESLint errors and warnings
+- Follow established code formatting
+- Use meaningful variable and function names
+
+### Code Review
+- Components should be under 200 lines
+- Hooks should have single responsibility
+- No commented-out code in commits
+- Use descriptive commit messages
+
+## File Organization Rules
+
+### Folder Structure
+- Follow the established src/ structure
+- Keep related files together
+- Use index.ts for clean exports
+- Separate concerns by folder type
+
+### Import Organization
+```typescript
+// 1. React imports
+import React from 'react';
+
+// 2. External libraries
+import styled from 'styled-components';
+import { Icon } from 'lucide-react';
+
+// 3. Internal hooks
+import { useCustomHook } from '../../hooks/useCustomHook';
+
+// 4. Internal components
+import { Component } from '../Component';
+
+// 5. Types (with type-only imports)
+import type { CustomType } from './types';
+```
+
+## Anti-patterns to Avoid
+
+### Don't Do
+- ❌ Don't use hardcoded values in styled-components
+- ❌ Don't put business logic in components
+- ❌ Don't use default exports
+- ❌ Don't use `any` type
+- ❌ Don't create components without proper TypeScript interfaces
+- ❌ Don't inline styles or CSS classes
+- ❌ Don't create large, monolithic components
+- ❌ Don't ignore accessibility requirements
+
+### Do Instead
+- ✅ Use theme variables for all styling
+- ✅ Extract business logic to custom hooks
+- ✅ Use named exports consistently
+- ✅ Use proper TypeScript types
+- ✅ Define proper interfaces for all components
+- ✅ Use styled-components exclusively
+- ✅ Break down components into smaller, focused pieces
+- ✅ Implement proper ARIA attributes and semantic HTML
+
+## Error Handling
+
+### Component Error Handling
+- Use error boundaries for component trees
+- Provide meaningful error messages
+- Log errors appropriately
+- Graceful degradation when possible
+
+### Hook Error Handling
+- Return error states from hooks
+- Use proper error typing
+- Handle async operations with try/catch
+- Provide error recovery mechanisms
+
+## Documentation
+
+### Code Documentation
+- Use JSDoc comments for complex functions
+- Document component props with descriptions
+- Explain complex business logic
+- Keep README files updated
+
+### Component Documentation
+- Document component purpose and usage
+- Provide examples of prop usage
+- Document any special behavior
+- Include accessibility notes
+
+Remember: These rules ensure consistency, maintainability, and scalability of the TreeBox codebase. Follow them to maintain the high quality and modular architecture we've established.
