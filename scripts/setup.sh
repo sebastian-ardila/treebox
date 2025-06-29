@@ -34,10 +34,6 @@ fi
 
 echo "✅ npm is available"
 
-# Install root dependencies
-echo "📦 Installing root dependencies..."
-npm install
-
 # Install frontend dependencies
 echo "📦 Installing frontend dependencies..."
 cd frontend
@@ -56,19 +52,21 @@ fi
 
 # Run initial build to verify everything works
 echo "🔨 Running initial frontend build to verify setup..."
-npm run build:frontend
+cd frontend
+npm run build
+cd ..
 
 echo ""
 echo "🎉 Setup completed successfully!"
 echo ""
 echo "Available commands:"
-echo "  npm run dev              - Start frontend development server"
-echo "  npm run build            - Build frontend for production"
-echo "  npm run lint             - Run ESLint on frontend code"
-echo "  npm run lint:fix         - Fix ESLint issues automatically"
-echo "  npm run preview          - Preview production build"
-echo ""
 echo "Frontend development:"
-echo "  cd frontend && npm run dev"
+echo "  cd frontend && npm run dev    - Start development server"
+echo "  cd frontend && npm run build  - Build for production"
+echo "  cd frontend && npm run lint   - Run ESLint"
+echo "  cd frontend && npm run preview - Preview production build"
+echo ""
+echo "Backend development:"
+echo "  cd backend && npm run dev     - When backend is implemented"
 echo ""
 echo "🚀 Happy coding!"

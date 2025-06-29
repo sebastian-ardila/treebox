@@ -40,20 +40,30 @@ treebox/
 - Node.js 18.0.0 or higher
 - npm or yarn package manager
 
+### Quick Start
+
+```bash
+# Clone and setup
+git clone https://github.com/sebastian-ardila/treebox.git
+cd treebox
+./scripts/setup.sh
+
+# Start frontend development
+cd frontend
+npm run dev
+```
+
 ### Frontend Development
 
 ```bash
 cd frontend
-npm install
-npm run dev
+npm install              # Install dependencies
+npm run dev             # Start development server
+npm run build           # Build for production
+npm run preview         # Preview production build
+npm run lint            # Run ESLint
+npm run lint:fix        # Fix ESLint issues
 ```
-
-Available scripts:
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint issues
 
 ### Backend Development
 *Coming soon - backend application not yet implemented*
@@ -139,8 +149,8 @@ The frontend can be deployed to:
 - AWS S3 + CloudFront
 - Any static hosting service
 
-Build command: `npm run build`
-Output directory: `dist/`
+Build command: `cd frontend && npm run build`
+Output directory: `frontend/dist/`
 
 ### Future Backend Deployment
 Backend deployment will depend on the chosen technology stack:
